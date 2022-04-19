@@ -5,11 +5,11 @@ namespace ValidateVersion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VersionsController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IConfiguration _configuration;
 
-        public VersionsController(IConfiguration configuration)
+        public ProductController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -17,13 +17,13 @@ namespace ValidateVersion.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_configuration.GetValue<string>("version"));
+            return Ok(_configuration.GetValue<string>("client-app-version"));
         }
 
         [HttpGet("{version}")]
         public IActionResult Get(string version)
         {
-            return Ok(_configuration.GetValue<string>("version") == version);
+            return Ok(_configuration.GetValue<string>("client-app-version") == version);
         }
     }
 }
